@@ -4,73 +4,82 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Бүртгэлийн форм</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <header>
+    <header class="header">
         <h1>Хэрэглэгчийн бүртгэл</h1>
     </header>
 
-    <main>
-        <form action="#" method="POST">
+    <main class="main-container">
+        <form action="#" method="POST" class="form-card">
             
-            <div>
-                <label for="username">Бүрэн нэр:</label>
+            <div class="form-group">
+                <label for="username" class="form-label">Бүрэн нэр:</label>
                 <input 
                     type="text" 
                     id="username" 
                     name="username" 
+                    class="form-input"
                     required 
-                    pattern="[A-Za-zА-Яа-яӨөҮү\s]{2,50}" 
-                    title="Зөвхөн үсэг болон зай ашиглана уу (2-50 тэмдэгт)."
+                    pattern="[A-Za-zА-Яа-яӨөҮү\s]{2,50}"
                 >
             </div>
 
-            <div>
-                <label for="email">Имэйл хаяг:</label>
+            <div class="form-group">
+                <label for="email" class="form-label">Имэйл хаяг:</label>
                 <input 
                     type="email" 
                     id="email" 
                     name="email" 
-                    required 
-                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-                >
-            </div>
-
-            <div>
-                <label for="password">Нууц үг:</label>
-                <input 
-                    type="password" 
-                    id="password" 
-                    name="password" 
-                    required 
-                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
-                    title="Дор хаяж 8 тэмдэгт, нэг том үсэг, нэг жижиг үсэг, нэг тоо агуулсан байна."
-                >
-            </div>
-
-            <div>
-                <label for="dob">Төрсөн огноо:</label>
-                <input 
-                    type="date" 
-                    id="dob" 
-                    name="dob" 
+                    class="form-input"
                     required
                 >
             </div>
 
-            <fieldset>
-                <legend>Хүйс:</legend>
-                <input type="radio" id="male" name="gender" value="male" required>
-                <label for="male">Эрэгтэй</label>
-                
-                <input type="radio" id="female" name="gender" value="female">
-                <label for="female">Эмэгтэй</label>
+            <div class="form-group position-container">
+                <label for="password" class="form-label">Нууц үг:</label>
+                <input 
+                    type="password" 
+                    id="password" 
+                    name="password" 
+                    class="form-input"
+                    required 
+                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                >
+                <span class="badge">Нууцлалтай</span>
+            </div>
+
+            <div class="form-group">
+                <label for="dob" class="form-label">Төрсөн огноо:</label>
+                <input 
+                    type="date" 
+                    id="dob" 
+                    name="dob" 
+                    class="form-input"
+                    required
+                >
+            </div>
+
+            <fieldset class="form-fieldset">
+                <legend class="form-legend">Хүйс:</legend>
+                <div class="radio-group">
+                    <label class="radio-label">
+                        <input type="radio" id="male" name="gender" value="male" required> Эрэгтэй
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" id="female" name="gender" value="female"> Эмэгтэй
+                    </label>
+                </div>
             </fieldset>
 
-            <div>
-                <label for="city">Байршил:</label>
-                <select id="city" name="city" required>
+            <div class="form-group">
+                <label for="city" class="form-label">Байршил:</label>
+                <select id="city" name="city" class="form-select" required>
                     <option value="">-- Сонгоно уу --</option>
                     <option value="ub">Улаанбаатар</option>
                     <option value="darkhan">Дархан</option>
@@ -79,26 +88,27 @@
                 </select>
             </div>
 
-            <fieldset>
-                <legend>Сонирхол:</legend>
-                <input type="checkbox" id="tech" name="interests" value="tech">
-                <label for="tech">Технологи</label>
-
-                <input type="checkbox" id="sports" name="interests" value="sports">
-                <label for="sports">Спорт</label>
-
-                <input type="checkbox" id="art" name="interests" value="art">
-                <label for="art">Урлаг</label>
+            <fieldset class="form-fieldset">
+                <legend class="form-legend">Сонирхол:</legend>
+                <div class="checkbox-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="tech" name="interests" value="tech"> Технологи
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="sports" name="interests" value="sports"> Спорт
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="art" name="interests" value="art"> Урлаг
+                    </label>
+                </div>
             </fieldset>
 
-            <div>
-                <button type="submit">Бүртгүүлэх</button>
-            </div>
+            <button type="submit" class="submit-btn">Бүртгүүлэх</button>
 
         </form>
     </main>
 
-    <footer>
+    <footer class="footer">
         <p>&copy; 2026 Бүх эрх хуулиар хамгаалагдсан.</p>
     </footer>
 
