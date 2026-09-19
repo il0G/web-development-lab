@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Бүртгэлийн форм</title>
+</head>
+<body>
+
+    <header>
+        <h1>Хэрэглэгчийн бүртгэл</h1>
+    </header>
+
+    <main>
+        <form action="#" method="POST">
+            
+            <div>
+                <label for="username">Бүрэн нэр:</label>
+                <input 
+                    type="text" 
+                    id="username" 
+                    name="username" 
+                    required 
+                    pattern="[A-Za-zА-Яа-яӨөҮү\s]{2,50}" 
+                    title="Зөвхөн үсэг болон зай ашиглана уу (2-50 тэмдэгт)."
+                >
+            </div>
+
+            <div>
+                <label for="email">Имэйл хаяг:</label>
+                <input 
+                    type="email" 
+                    id="email" 
+                    name="email" 
+                    required 
+                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                >
+            </div>
+
+            <div>
+                <label for="password">Нууц үг:</label>
+                <input 
+                    type="password" 
+                    id="password" 
+                    name="password" 
+                    required 
+                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
+                    title="Дор хаяж 8 тэмдэгт, нэг том үсэг, нэг жижиг үсэг, нэг тоо агуулсан байна."
+                >
+            </div>
+
+            <div>
+                <label for="dob">Төрсөн огноо:</label>
+                <input 
+                    type="date" 
+                    id="dob" 
+                    name="dob" 
+                    required
+                >
+            </div>
+
+            <fieldset>
+                <legend>Хүйс:</legend>
+                <input type="radio" id="male" name="gender" value="male" required>
+                <label for="male">Эрэгтэй</label>
+                
+                <input type="radio" id="female" name="gender" value="female">
+                <label for="female">Эмэгтэй</label>
+            </fieldset>
+
+            <div>
+                <label for="city">Байршил:</label>
+                <select id="city" name="city" required>
+                    <option value="">-- Сонгоно уу --</option>
+                    <option value="ub">Улаанбаатар</option>
+                    <option value="darkhan">Дархан</option>
+                    <option value="erdenet">Эрдэнэт</option>
+                    <option value="other">Бусад</option>
+                </select>
+            </div>
+
+            <fieldset>
+                <legend>Сонирхол:</legend>
+                <input type="checkbox" id="tech" name="interests" value="tech">
+                <label for="tech">Технологи</label>
+
+                <input type="checkbox" id="sports" name="interests" value="sports">
+                <label for="sports">Спорт</label>
+
+                <input type="checkbox" id="art" name="interests" value="art">
+                <label for="art">Урлаг</label>
+            </fieldset>
+
+            <div>
+                <button type="submit">Бүртгүүлэх</button>
+            </div>
+
+        </form>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Бүх эрх хуулиар хамгаалагдсан.</p>
+    </footer>
+
+</body>
+</html>
