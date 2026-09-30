@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Лаборатори 02: Хэрэглэгчийн анкет</title>
+</head>
+<body>
+ <header>
+  <h1>Оюутны Бүртгэлийн Портал</h1>
+ 
+ </header>
+
+ <main>
+  <article>
+   <section>
+    <h2>Хэрэглэгчийн Анкет Бөглөх</h2>
+    <p>Доорх формын дагуу мэдээллээ бүрэн, үнэн зөв зааж бөглөнө үү.</p>
+
+    <form action="#" method="POST" enctype="multipart/form-data">
+     <fieldset>
+      <legend>Хувийн мэдээлэл</legend>
+      <label for="fullname">Овог нэр:</label><br>
+      <input type="text" id="fullname" name="fullname" placeholder="И. Болд" required minlength="2"><br><br>
+
+      <label for="register">Регистрийн дугаар:</label><br>
+      <input type="text" id="register" name="register" pattern="[А-ЯӨҮ]{2}[0-9]{8}" placeholder="УА12345678" title="2 том кирилл үсэг, 8 оронтой тоо" required><br><br>
+
+      <label for="dob">Төрсөн огноо:</label><br>
+      <input type="date" id="dob" name="dob" required><br><br>
+
+      <label>Хүйс:</label><br>
+      <input type="radio" id="male" name="gender" value="male" required>
+      <label for="male">Эрэгтэй</label>
+      <input type="radio" id="female" name="gender" value="female">
+      <label for="female">Эмэгтэй</label><br><br>
+
+      <label for="avatar">Профайл зураг оруулна уу:</label><br>
+      <input type="file" id="avatar" name="avatar" accept="image/*"><br>
+     </fieldset>
+     <br>
+
+     <fieldset>
+      <legend>Холбоо барих мэдээлэл</legend>
+      <label for="email">Цахим хаяг (Email):</label><br>
+      <input type="email" id="email" name="email" placeholder="example@domain.com" required><br><br>
+
+      <label for="password">Нууц үг:</label><br>
+      <input type="password" id="password" name="password" required minlength="6"><br><br>
+
+      <label for="phone">Утасны дугаар:</label><br>
+      <input type="tel" id="phone" name="phone" pattern="[0-9]{8}" placeholder="88112233" title="8 оронтой тоо" required><br><br>
+
+      <label for="city">Аймаг / Хот:</label><br>
+      <select id="city" name="city" required>
+       <option value="">-- Сонгоно уу --</option>
+       <option value="ulaanbaatar">Улаанбаатар</option>
+       <option value="darkhan">Дархан-Уул</option>
+       <option value="orkhon">Орхон</option>
+       <option value="other">Бусад</option>
+      </select><br><br>
+
+      <label for="address">Гэрийн хаяг:</label><br>
+      <input type="text" id="address" name="address" placeholder="Дүүрэг, хороо, байр, тоот" required minlength="5"><br><br>
+
+      <label for="emergency_name">Яаралтай үед холбоо барих хүн:</label><br>
+      <input type="text" id="emergency_name" name="emergency_name" placeholder="(эцэг/эх)" required minlength="2"><br><br>
+
+      <label for="emergency_phone">Тэр хүний утасны дугаар:</label><br>
+      <input type="tel" id="emergency_phone" name="emergency_phone" pattern="[0-9]{8}" placeholder="99112233" title="8 оронтой тоо" required><br>
+     </fieldset>
+     <br>
+
+     <fieldset>
+      <legend>Боловсрол ба Сонирхол</legend>
+      <label for="studentid">Оюутны код:</label><br>
+      <input type="text" id="studentid" name="studentid" placeholder="B123456789" required minlength="6" maxlength="12"><br><br>
+
+      <label for="degree">Суралцаж буй түвшин:</label><br>
+      <select id="degree" name="degree" required>
+       <option value="">-- Сонгоно уу --</option>
+       <option value="bachelor">Бакалавр</option>
+       <option value="master">Магистр</option>
+       <option value="doctor">Докторант</option>
+      </select><br><br>
+
+      <label for="major">Мэргэжил:</label><br>
+      <select id="major" name="major" required>
+       <option value="">-- Сонгоно уу --</option>
+       <option value="cybersecurity">Кибер аюулгүй байдал</option>
+       <option value="software">Программ хангамж</option>
+       <option value="it">Мэдээллийн технологи</option>
+       <option value="electronics">Электроник</option>
+       <option value="other">Бусад</option>
+      </select><br><br>
+
+      <label for="course">Курс:</label><br>
+      <select id="course" name="course" required>
+       <option value="">-- Сонгоно уу --</option>
+       <option value="1">1-р курс</option>
+       <option value="2">2-р курс</option>
+       <option value="3">3-р курс</option>
+       <option value="4">4-р курс</option>
+      </select><br><br>
+
+      <label for="english">Англи хэлний түвшин:</label><br>
+      <select id="english" name="english">
+       <option value="">-- Сонгоно уу --</option>
+       <option value="beginner">Анхан шат</option>
+       <option value="intermediate">Дунд шат</option>
+       <option value="advanced">Ахисан шат</option>
+      </select><br><br>
+
+      <label>Сонирхож буй технологиуд:</label><br>
+      <input type="checkbox" id="html" name="skills" value="HTML">
+      <label for="html">HTML5 / CSS3</label><br>
+      <input type="checkbox" id="js" name="skills" value="JavaScript">
+      <label for="js">JavaScript</label><br>
+      <input type="checkbox" id="php" name="skills" value="PHP">
+      <label for="php">PHP &amp; MySQL</label><br>
+      <input type="checkbox" id="python" name="skills" value="Python">
+      <label for="python">Python</label><br>
+      <input type="checkbox" id="java" name="skills" value="Java">
+      <label for="java">Java</label><br>
+      <input type="checkbox" id="sql" name="skills" value="SQL">
+      <label for="sql">SQL / Мэдээллийн сан</label><br>
+      <input type="checkbox" id="linux" name="skills" value="Linux">
+      <label for="linux">Linux / Kali Linux</label><br>
+      <input type="checkbox" id="network" name="skills" value="Network">
+      <label for="network">Компьютерийн сүлжээ (Cisco)</label><br>
+      <input type="checkbox" id="security" name="skills" value="Cybersecurity">
+      <label for="security">Кибер аюулгүй байдал</label><br><br>
+
+      <label for="bio">Товч танилцуулга / Өөрийн тухай:</label><br>
+      <textarea id="bio" name="bio" rows="4" cols="50" placeholder="Өөрийн танилцуулгыг энд бичнэ үү..."></textarea><br>
+     </fieldset>
+     <br>
+
+     <input type="checkbox" id="agree" name="agree" required>
+     <label for="agree">Оруулсан мэдээлэл үнэн зөв гэдгийг баталж байна.</label><br><br>
+
+     <button type="submit">Анкет Илгээх</button>
+     <button type="reset">Дахин эхлүүлэх</button>
+    </form>
+   </section>
+  </article>
+ </main>
+
+ <footer>
+  <p>&copy; 2026 Веб зохиомж хичээл. Бүх эрх хуулиар хамгаалагдсан.</p>
+ </footer>
+</body>
+</html>
