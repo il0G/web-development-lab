@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Хоёр дугуй | Дугуй түрээс</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container bar">
+      <a class="brand" href="#home">Хоёр дугуй</a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav">Цэс</button>
+      <nav id="main-nav" class="main-nav" aria-label="Үндсэн цэс">
+        <ul>
+          <li><a href="#home">Нүүр</a></li>
+          <li><a href="#bikes">Дугуй</a></li>
+          <li><a href="#routes">Маршрут</a></li>
+          <li><a href="#contact">Холбоо барих</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="home" class="band hero-band">
+      <div class="container hero">
+        <div class="hero-text">
+          <h1>Хотыг хоёр дугуйгаар аялаарай</h1>
+          <p>Улаанбаатарын төвд байрлах дугуйн түрээс. Дуулга, цоожтой нь өдрөөр болон цагаар түрээслэгдэнэ.</p>
+          <a class="button" href="#bikes">Дугуй үзэх</a>
+        </div>
+        <dl class="fields">
+          <div><dt>Хаяг</dt><dd>Сүхбаатар дүүрэг</dd></div>
+          <div><dt>Ажлын цаг</dt><dd>10:00 - 20:00</dd></div>
+          <div><dt>Утас</dt><dd>7700 0000</dd></div>
+          <div><dt>Улирал</dt><dd>5-р сар - 9-р сар</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="container menu">
+      <div id="bikes">
+        <h2>Дугуй</h2>
+        <ul class="menu-list">
+          <li>
+            <div><h3>Хотын дугуй</h3><p>Хавтгай замд тохиромжтой, 1 араатай.</p></div>
+            <span class="price">25,000&#8366;<small>/өдөр</small></span>
+          </li>
+          <li>
+            <div><h3>Уулын дугуй</h3><p>21 араатай, өндөр өгсүүртэй замд.</p></div>
+            <span class="price">40,000&#8366;<small>/өдөр</small></span>
+          </li>
+          <li>
+            <div><h3>Цахилгаан дугуй</h3><p>Хөдөлгүүртэй, нэг цэнэгээр 60 км хүртэл.</p></div>
+            <span class="price">70,000&#8366;<small>/өдөр</small></span>
+          </li>
+        </ul>
+      </div>
+
+      <div id="routes">
+        <h2>Маршрут</h2>
+        <ul class="menu-list">
+          <li>
+            <div><h3>Туул голын эрэг</h3><p>Хотын төвөөс гол дагуух хавтгай зам.</p></div>
+            <span class="price">12 км</span>
+          </li>
+          <li>
+            <div><h3>Зайсан толгой</h3><p>Өгсүүртэй, хотын харагдацтай.</p></div>
+            <span class="price">9 км</span>
+          </li>
+          <li>
+            <div><h3>Гачуурт</h3><p>Хотоос гарч, ойн замаар.</p></div>
+            <span class="price">28 км</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="contact" class="band contact-band">
+      <div class="container">
+        <h2>Холбоо барих</h2>
+        <p>Урьдчилж захиалбал дугуйг бэлэн болгоно.</p>
+        <ul class="links">
+          <li><a href="tel:+97677000000">7700 0000</a></li>
+          <li><a href="mailto:hello@example.com">hello@example.com</a></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">&copy; 2026 Хоёр дугуй</div>
+  </footer>
+
+  <script>
+    const toggle = document.querySelector('.menu-toggle');
+    const nav = document.getElementById('main-nav');
+
+    function setMenu(open) {
+      nav.classList.toggle('open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+    }
+
+    toggle.addEventListener('click', () => setMenu(!nav.classList.contains('open')));
+    nav.addEventListener('click', e => { if (e.target.closest('a')) setMenu(false); });
+  </script>
+</body>
+</html>
