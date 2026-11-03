@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>Хоёр дугуй | Зургийн цомог</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#gallery">Агуулга руу очих</a>
+
+  <header class="site-header">
+    <div class="container bar">
+      <a class="brand" href="#home">Хоёр дугуй</a>
+
+      <nav id="main-nav" class="main-nav" aria-label="Үндсэн цэс">
+        <ul>
+          <li><a href="#home">Нүүр</a></li>
+          <li><a href="#gallery">Цомог</a></li>
+          <li><a href="#video">Бичлэг</a></li>
+          <li><a href="#map">Байршил</a></li>
+          <li><a href="#contact">Холбоо барих</a></li>
+        </ul>
+      </nav>
+
+      <div class="actions">
+        <!-- Тема солих товч: script.js харуулна -->
+        <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Харанхуй горим" hidden>
+          <svg class="icon-moon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
+            <path d="M21 14.5A9 9 0 0 1 9.5 3 9 9 0 1 0 21 14.5z" fill="currentColor"/>
+          </svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
+            <circle cx="12" cy="12" r="4.5" fill="currentColor"/>
+            <g stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9L17 7M7 17l-2.1 2.1"/>
+            </g>
+          </svg>
+        </button>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav">Цэс</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="home" class="band hero-band">
+      <div class="container hero">
+        <div class="hero-text">
+          <h1 style="--i:0">Хоёр дугуйн аяллын зургийн цомог</h1>
+          <p style="--i:1">Улаанбаатар орчмын дугуйн маршрутуудаас түүвэрлэсэн зураг, бичлэг. Зураг дээр хулганаа аваачих эсвэл Tab дарж сонгоод ажиглаарай.</p>
+          <a class="button" style="--i:2" href="#gallery">Цомог үзэх</a>
+        </div>
+        <dl class="fields">
+          <div><dt>Зураг</dt><dd>6</dd></div>
+          <div><dt>Бичлэг</dt><dd>1</dd></div>
+          <div><dt>Улирал</dt><dd>5-р сар - 9-р сар</dd></div>
+          <div><dt>Байршил</dt><dd>Улаанбаатар</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section id="gallery" class="container section" aria-labelledby="gallery-title">
+      <h2 id="gallery-title">Зургийн цомог</h2>
+      <p class="lead">Карт бүрийн «Эргүүлэх» товчийг дарж маршрутын мэдээллийг үзнэ.</p>
+
+      <ul class="gallery-grid">
+        <li class="card" style="--i:0">
+          <div class="card-inner">
+            <figure class="face face-front">
+              <img src="img/photo1.jpg" alt="Туул голын эрэг дагуух дугуйн зам" width="1200" height="800" loading="lazy">
+              <figcaption>Туул голын эрэг</figcaption>
+            </figure>
+            <div class="face face-back" inert>
+              <h3>Туул голын эрэг</h3>
+              <p>Хотын төвөөс гол дагуух хавтгай зам.</p>
+              <p class="meta">Зам: 12 км</p>
+            </div>
+          </div>
+          <button class="flip-btn" type="button" aria-pressed="false" hidden>Эргүүлэх<span class="visually-hidden">: Туул голын эрэг</span></button>
+        </li>
+
+        <li class="card" style="--i:1">
+          <div class="card-inner">
+            <figure class="face face-front">
+              <img src="img/photo2.jpg" alt="Зайсан толгой руу өгсөх дугуйн зам" width="1200" height="800" loading="lazy">
+              <figcaption>Зайсан толгой</figcaption>
+            </figure>
+            <div class="face face-back" inert>
+              <h3>Зайсан толгой</h3>
+              <p>Өгсүүртэй, хотын харагдацтай.</p>
+              <p class="meta">Зам: 9 км</p>
+            </div>
+          </div>
+          <button class="flip-btn" type="button" aria-pressed="false" hidden>Эргүүлэх<span class="visually-hidden">: Зайсан толгой</span></button>
+        </li>
+
+        <li class="card" style="--i:2">
+          <div class="card-inner">
+            <figure class="face face-front">
+              <img src="img/photo3.jpg" alt="Гачууртын ойн замаар дугуйдаж буй зам" width="1200" height="800" loading="lazy">
+              <figcaption>Гачуурт</figcaption>
+            </figure>
+            <div class="face face-back" inert>
+              <h3>Гачуурт</h3>
+              <p>Хотоос гарч, ойн замаар.</p>
+              <p class="meta">Зам: 28 км</p>
+            </div>
+          </div>
+          <button class="flip-btn" type="button" aria-pressed="false" hidden>Эргүүлэх<span class="visually-hidden">: Гачуурт</span></button>
+        </li>
+
+        <li class="card" style="--i:3">
+          <div class="card-inner">
+            <figure class="face face-front">
+              <img src="img/photo4.jpg" alt="Богд хан уулын бэлээр дамжих дугуйн зам" width="1200" height="800" loading="lazy">
+              <figcaption>Богд хан уулын бэл</figcaption>
+            </figure>
+            <div class="face face-back" inert>
+              <h3>Богд хан уулын бэл</h3>
+              <p>Уулын бэлээр дугуйн аялал.</p>
+              <p class="meta">Зам: 22 км</p>
+            </div>
+          </div>
+          <button class="flip-btn" type="button" aria-pressed="false" hidden>Эргүүлэх<span class="visually-hidden">: Богд хан уулын бэл</span></button>
+        </li>
+
+        <li class="card" style="--i:4">
+          <div class="card-inner">
+            <figure class="face face-front">
+              <img src="img/photo5.jpg" alt="Хотын төвийн дугуйн тойрог зам" width="1200" height="800" loading="lazy">
+              <figcaption>Хотын төв</figcaption>
+            </figure>
+            <div class="face face-back" inert>
+              <h3>Хотын төв</h3>
+              <p>Сүхбаатарын талбай орчмын богино тойрог.</p>
+              <p class="meta">Зам: 5 км</p>
+            </div>
+          </div>
+          <button class="flip-btn" type="button" aria-pressed="false" hidden>Эргүүлэх<span class="visually-hidden">: Хотын төв</span></button>
+        </li>
+
+        <li class="card" style="--i:5">
+          <div class="card-inner">
+            <figure class="face face-front">
+              <img src="img/photo6.jpg" alt="Тэрэлжийн байгалийн дугуйн зам" width="1200" height="800" loading="lazy">
+              <figcaption>Тэрэлж</figcaption>
+            </figure>
+            <div class="face face-back" inert>
+              <h3>Тэрэлж</h3>
+              <p>Хотоос алс, байгалийн аялал.</p>
+              <p class="meta">Зам: 65 км</p>
+            </div>
+          </div>
+          <button class="flip-btn" type="button" aria-pressed="false" hidden>Эргүүлэх<span class="visually-hidden">: Тэрэлж</span></button>
+        </li>
+      </ul>
+    </section>
+
+    <section id="video" class="container section" aria-labelledby="video-title">
+      <h2 id="video-title">Бичлэг</h2>
+      <div class="media">
+        <figure class="media-item">
+          <video controls preload="metadata" playsinline poster="img/photo1.jpg" width="640" height="360">
+            <source src="video/clip.webm" type="video/webm">
+            <source src="video/clip.mp4" type="video/mp4">
+            <track kind="captions" src="video/clip.mn.vtt" srclang="mn" label="Монгол" default>
+            <p>Таны хөтөч видео тоглуулахгүй байна. <a href="video/clip.mp4">Бичлэгийг татаж авах</a>.</p>
+          </video>
+          <figcaption>Аяллын бичлэг (монгол хадмалтай).</figcaption>
+        </figure>
+
+        <figure class="media-item chart">
+          <svg viewBox="0 0 320 160" role="img" aria-labelledby="chart-title chart-desc">
+            <title id="chart-title">Туул голын эрэг маршрутын өндрийн график</title>
+            <desc id="chart-desc">12 км замын туршид өндөр аажмаар өсч, төгсгөлдөө 40 метр орчим өндөр болно.</desc>
+            <line class="axis" x1="48" y1="130" x2="300" y2="130"/>
+            <line class="axis" x1="48" y1="20" x2="48" y2="130"/>
+            <path class="area" d="M48 112 C85 110 105 102 130 98 S185 72 215 62 S270 42 300 36 L300 130 L48 130 Z"/>
+            <path class="line" pathLength="1" d="M48 112 C85 110 105 102 130 98 S185 72 215 62 S270 42 300 36"/>
+            <text x="44" y="116" text-anchor="end">1300 м</text>
+            <text x="44" y="40" text-anchor="end">1340 м</text>
+            <text x="48" y="148">0 км</text>
+            <text x="300" y="148" text-anchor="end">12 км</text>
+          </svg>
+          <figcaption>Өндрийн график (жишээ өгөгдөл).</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="map" class="container section" aria-labelledby="map-title">
+      <h2 id="map-title">Байршил</h2>
+      <!-- sandbox: зөвхөн газрын зураг ажиллахад хэрэгтэй эрхүүд; referrerpolicy: хаяг дамжуулахгүй -->
+      <iframe class="map-frame"
+              title="Хоёр дугуй: Улаанбаатар, Сүхбаатарын талбай орчмын газрын зураг"
+              src="https://www.openstreetmap.org/export/embed.html?bbox=106.89%2C47.90%2C106.95%2C47.94&amp;layer=mapnik&amp;marker=47.9186%2C106.9177"
+              loading="lazy"
+              referrerpolicy="no-referrer"
+              sandbox="allow-scripts allow-same-origin"></iframe>
+      <p><a href="https://www.openstreetmap.org/?mlat=47.9186&amp;mlon=106.9177#map=15/47.9186/106.9177">Том газрын зураг дээр харах</a></p>
+    </section>
+
+    <section id="contact" class="band contact-band">
+      <div class="container">
+        <h2>Холбоо барих</h2>
+        <p>Зураг, маршрутын талаар асуух зүйл байвал бичээрэй.</p>
+        <ul class="links">
+          <li><a href="tel:+97677000000">7700 0000</a></li>
+          <li><a href="mailto:hello@example.com">hello@example.com</a></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">&copy; 2026 Хоёр дугуй</div>
+  </footer>
+</body>
+</html>

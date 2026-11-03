@@ -1,0 +1,509 @@
+/* =====================================================
+   Лаб 6: CSS3 animation, transform, custom properties, multimedia
+   Лаб 5-ын responsive хуудас дээр суурилсан
+   ===================================================== */
+
+/* ---------- Design token (custom properties) ---------- */
+:root {
+  color-scheme: light;
+
+  /* өнгө */
+  --bg: #f5f6f8;
+  --surface: #ffffff;
+  --ink: #1b2530;
+  --muted: #5a6672;
+  --line: #d0d7de;
+  --accent: #1f5fa8;
+  --deep: #17304a;
+  --deep-darker: #0f2236;
+  --deep-ink: #eef2f6;
+  --deep-muted: #a8bacb;
+  --deep-line: rgba(238, 242, 246, 0.28);
+  --pop: #f2994a;
+  --pop-dark: #de8636;
+
+  /* зай, хэлбэр */
+  --radius: 6px;
+  --shadow: 0 1px 3px rgba(15, 34, 54, 0.14);
+  --shadow-lg: 0 14px 30px rgba(15, 34, 54, 0.24);
+
+  /* хөдөлгөөн */
+  --dur: 0.25s;
+  --dur-flip: 0.7s;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+/* ---------- Dark mode: токенуудыг л солино ---------- */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #0d1a28;
+  --surface: #14263a;
+  --ink: #e8eef4;
+  --muted: #9db0c2;
+  --line: #2a3d52;
+  --accent: #7db4f0;
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 14px 30px rgba(0, 0, 0, 0.6);
+}
+/* JS ажиллахаас өмнө (эсвэл JS-гүй үед) үйлдлийн системийн тохиргоог дагана */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    color-scheme: dark;
+    --bg: #0d1a28;
+    --surface: #14263a;
+    --ink: #e8eef4;
+    --muted: #9db0c2;
+    --line: #2a3d52;
+    --accent: #7db4f0;
+    --shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    --shadow-lg: 0 14px 30px rgba(0, 0, 0, 0.6);
+  }
+}
+
+/* ---------- Үндсэн ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+[hidden] { display: none !important; }
+
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+html { scroll-padding-top: 4.5rem; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 1rem/1.6 "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+  overflow-wrap: anywhere;
+  transition: background-color var(--dur), color var(--dur);
+}
+
+img, video, svg, iframe { max-width: 100%; }
+a { color: var(--accent); }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.band :focus-visible { outline-color: var(--pop); }
+
+.container {
+  width: min(1100px, 100% - 3rem);
+  margin-inline: auto;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  z-index: 20;
+  padding: 0.6rem 1rem;
+  background: var(--ink);
+  color: var(--surface);
+  border-radius: var(--radius);
+  transition: top var(--dur);
+}
+.skip-link:focus { top: 1rem; }
+
+/* ---------- Keyframes ---------- */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes draw {
+  from { stroke-dashoffset: 1; }
+}
+
+/* ---------- Header + цэс ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+  transition: background-color var(--dur);
+}
+.bar {
+  display: flex;
+  align-items: center;
+  min-height: 4rem;
+}
+.brand {
+  color: var(--ink);
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+}
+.main-nav { margin-left: auto; }
+.main-nav ul {
+  display: flex;
+  gap: 1.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.main-nav a {
+  display: inline-block;
+  padding: 0.25rem 0;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: border-color var(--dur);
+}
+.main-nav a:hover { border-bottom-color: var(--accent); }
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-left: 1.25rem;
+}
+.menu-toggle { display: none; }
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: border-color var(--dur), transform var(--dur) var(--ease);
+}
+.theme-toggle:hover { border-color: var(--ink); transform: rotate(20deg); }
+:root[data-theme="dark"] .icon-moon { display: none; }
+:root:not([data-theme="dark"]) .icon-sun { display: none; }
+
+/* ---------- Бүтэн өргөнтэй хар хөх хэсгүүд ---------- */
+.band { background: var(--deep); color: var(--deep-ink); }
+
+/* ---------- Hero ---------- */
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: 3rem;
+  align-items: center;
+  padding-block: 5rem 4rem;
+}
+/* --i custom property-оор дараалуулсан (stagger) орох хөдөлгөөн */
+.hero-text > * {
+  animation: rise 0.6s var(--ease) backwards;
+  animation-delay: calc(var(--i, 0) * 120ms);
+}
+.hero h1 {
+  margin: 0 0 1rem;
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+.hero p {
+  max-width: 36rem;
+  margin: 0 0 1.75rem;
+  color: var(--deep-muted);
+  font-size: 1.1rem;
+}
+.button {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  background: var(--pop);
+  color: #1b2530;
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: var(--radius);
+  transition: background-color var(--dur), transform var(--dur) var(--ease);
+}
+.button:hover { background: var(--pop-dark); transform: translateY(-2px); }
+
+/* Мэдээллийн талбарууд */
+.fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 0;
+  border-top: 2px solid var(--pop);
+  border-left: 1px solid var(--deep-line);
+}
+.fields > div {
+  padding: 1rem 1.1rem;
+  border-right: 1px solid var(--deep-line);
+  border-bottom: 1px solid var(--deep-line);
+}
+.fields dt { margin: 0 0 0.25rem; color: var(--deep-muted); font-size: 0.85rem; }
+.fields dd { margin: 0; font-weight: 650; }
+
+/* ---------- Хэсгүүд ---------- */
+.section { padding-block: 3.5rem; }
+.section + .section { border-top: 1px solid var(--line); }
+.section h2 {
+  margin: 0;
+  padding-bottom: 0.6rem;
+  border-bottom: 2px solid var(--ink);
+  font-size: 1.6rem;
+  letter-spacing: -0.01em;
+}
+.lead { margin: 1rem 0 0; color: var(--muted); }
+
+/* ---------- Gallery + 3D flip карт ---------- */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2rem 1.5rem;
+  margin: 1.5rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  perspective: 1000px;                      /* 3D гүн */
+  transition: transform var(--dur) var(--ease);
+  animation: rise 0.6s var(--ease) backwards;
+  animation-delay: calc(var(--i, 0) * 90ms);   /* stagger */
+}
+/* hover болон гараар (Tab) сонгоход ижил эффект */
+.card:hover,
+.card:focus-within { transform: translateY(-6px) scale(1.02); }
+
+.card-inner {
+  position: relative;
+  aspect-ratio: 3 / 2;
+  transform-style: preserve-3d;
+  transition: transform var(--dur-flip) var(--ease);
+}
+.card.is-flipped .card-inner { transform: rotateY(180deg); }
+
+.face {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  overflow: hidden;
+  border-radius: var(--radius);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  box-shadow: var(--shadow);
+  transition: box-shadow var(--dur) var(--ease);
+}
+.card:hover .face,
+.card:focus-within .face { box-shadow: var(--shadow-lg); }
+
+.face-front img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s var(--ease);
+}
+.card:hover .face-front img,
+.card:focus-within .face-front img { transform: scale(1.06); }
+
+.face-front figcaption {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 2rem 1rem 0.8rem;
+  background: linear-gradient(transparent, rgba(8, 18, 30, 0.82));
+  color: #fff;
+  font-weight: 650;
+}
+
+.face-back {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 1.25rem;
+  background: var(--deep);
+  color: var(--deep-ink);
+  transform: rotateY(180deg);
+}
+.face-back h3 { margin: 0; font-size: 1.2rem; }
+.face-back p { margin: 0; color: var(--deep-muted); }
+.face-back .meta { color: var(--pop); font-weight: 700; }
+
+.flip-btn {
+  align-self: flex-start;
+  padding: 0.5rem 1rem;
+  background: var(--surface);
+  color: var(--ink);
+  font: inherit;
+  font-weight: 600;
+  border: 1px solid var(--ink);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background-color var(--dur), color var(--dur);
+}
+.flip-btn:hover,
+.flip-btn[aria-pressed="true"] { background: var(--ink); color: var(--surface); }
+
+/* ---------- Бичлэг + inline SVG ---------- */
+.media {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+  gap: 2rem;
+  align-items: start;
+  margin-top: 1.5rem;
+}
+.media-item { margin: 0; }
+.media-item figcaption { margin-top: 0.5rem; color: var(--muted); font-size: 0.9rem; }
+
+video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  background: #000;
+  border-radius: var(--radius);
+}
+
+.chart svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+.chart text { fill: var(--muted); font-size: 10px; }
+.chart .axis { stroke: var(--muted); stroke-width: 1; opacity: 0.6; }
+.chart .area { fill: var(--accent); opacity: 0.15; }
+.chart .line {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;                      /* pathLength="1" */
+  animation: draw 1.6s var(--ease) 0.3s backwards;
+}
+
+/* ---------- Газрын зураг (iframe) ---------- */
+.map-frame {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 7;
+  min-height: 260px;
+  margin-top: 1.5rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+/* ---------- Холбоо барих ---------- */
+.contact-band { padding-block: 3.5rem; }
+.contact-band h2 { margin: 0 0 0.5rem; font-size: 1.6rem; letter-spacing: -0.01em; }
+.contact-band p { margin: 0; color: var(--deep-muted); }
+.contact-band a { color: var(--pop); }
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  margin: 1rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-footer {
+  padding-block: 1.25rem;
+  background: var(--deep-darker);
+  color: var(--deep-muted);
+  font-size: 0.9rem;
+}
+
+/* ---------- Tablet: 1024px ба түүнээс бага ---------- */
+@media (max-width: 1024px) {
+  .container { width: min(1100px, 100% - 2.5rem); }
+
+  .hero {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2rem;
+    padding-block: 3.5rem 3rem;
+  }
+  .fields { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+  .section { padding-block: 3rem; }
+  .gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .media { grid-template-columns: minmax(0, 1fr); }
+  .main-nav ul { gap: 1.25rem; }
+}
+
+/* ---------- Навигаци нугарах: 820px ба түүнээс бага ---------- */
+@media (max-width: 820px) {
+  .bar { min-height: 3.5rem; }
+  .actions { margin-left: auto; }
+
+  .menu-toggle {
+    display: inline-block;
+    padding: 0.45rem 0.9rem;
+    background: transparent;
+    color: var(--ink);
+    font: inherit;
+    font-weight: 600;
+    border: 1px solid var(--ink);
+    border-radius: var(--radius);
+    cursor: pointer;
+  }
+  .menu-toggle[aria-expanded="true"] { background: var(--ink); color: var(--surface); }
+
+  .main-nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin-left: 0;
+    background: var(--surface);
+    border-bottom: 1px solid var(--line);
+  }
+  .main-nav.open { display: block; }
+  .main-nav ul { flex-direction: column; gap: 0; }
+  .main-nav li + li { border-top: 1px solid var(--line); }
+  .main-nav a {
+    display: block;
+    padding: 0.9rem 1rem;
+    border-bottom: 0;
+  }
+  .main-nav a:hover { background: var(--bg); }
+}
+
+/* ---------- Mobile: 640px ба түүнээс бага ---------- */
+@media (max-width: 640px) {
+  .container { width: min(1100px, 100% - 2rem); }
+
+  .hero { padding-block: 2.5rem; gap: 1.5rem; }
+  .hero p { font-size: 1rem; }
+  .button { display: block; text-align: center; }
+  .fields { grid-template-columns: minmax(0, 1fr); }
+
+  .section { padding-block: 2.5rem; }
+  .section h2, .contact-band h2 { font-size: 1.4rem; }
+  .gallery-grid { grid-template-columns: minmax(0, 1fr); gap: 1.75rem; }
+  .map-frame { aspect-ratio: 4 / 3; }
+  .contact-band { padding-block: 2.5rem; }
+}
+
+/* ---------- Хөдөлгөөнийг хязгаарлах ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+  .card:hover,
+  .card:focus-within,
+  .card:hover .face-front img,
+  .card:focus-within .face-front img,
+  .button:hover,
+  .theme-toggle:hover { transform: none; }
+}
