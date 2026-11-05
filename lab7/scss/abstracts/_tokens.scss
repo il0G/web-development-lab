@@ -1,0 +1,66 @@
+// =====================================================
+// Design token-ууд (Sass map). Эндээс :root-ийн custom property үүснэ.
+// =====================================================
+
+// --- Өнгө (гэрэлтэй горим) ---
+$colors: (
+  bg:          #f5f6f8,
+  surface:     #ffffff,
+  ink:         #1b2530,
+  muted:       #5a6672,
+  line:        #d0d7de,
+  accent:      #1f5fa8,
+  deep:        #17304a,
+  deep-darker: #0f2236,
+  deep-ink:    #eef2f6,
+  deep-muted:  #a8bacb,
+  deep-line:   rgba(238, 242, 246, 0.28),
+  pop:         #f2994a,
+  pop-dark:    #de8636,
+);
+
+// --- Өнгө (харанхуй горим): зөвхөн өөрчлөгддөг токенууд ---
+$colors-dark: (
+  bg:      #0d1a28,
+  surface: #14263a,
+  ink:     #e8eef4,
+  muted:   #9db0c2,
+  line:    #2a3d52,
+  accent:  #7db4f0,
+);
+
+// --- Радиус ---
+$radii: (
+  radius: 6px,
+);
+
+// --- Сүүдэр ---
+$shadows: (
+  shadow:    0 1px 3px rgba(15, 34, 54, 0.14),
+  shadow-lg: 0 14px 30px rgba(15, 34, 54, 0.24),
+);
+$shadows-dark: (
+  shadow:    0 1px 3px rgba(0, 0, 0, 0.5),
+  shadow-lg: 0 14px 30px rgba(0, 0, 0, 0.6),
+);
+
+// --- Хөдөлгөөн ---
+$durations: (
+  dur:      0.25s,
+  dur-flip: 0.7s,
+);
+$easings: (
+  ease: cubic-bezier(0.2, 0.7, 0.2, 1),
+);
+
+// --- Breakpoint (max-width) ---
+$breakpoints: (
+  tablet: 1024px,
+  nav:    820px,
+  mobile: 640px,
+);
+
+// --- Бусад ---
+$font-stack: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+$container-max: 1100px;
+$spacers: (1: 4, 2: 8, 3: 16, 4: 24, 5: 48);   // px, rem()-ээр хөрвүүлнэ

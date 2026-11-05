@@ -1,0 +1,11 @@
+@use "../abstracts" as *;
+
+// Бүтэн өргөнтэй хар хөх хэсэг
+.band {
+  background: var(--deep);
+  color: var(--deep-ink);
+
+  :focus-visible {
+    outline-color: var(--pop);
+  }
+}

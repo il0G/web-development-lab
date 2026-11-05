@@ -1,0 +1,67 @@
+@use "../abstracts" as *;
+
+// Бичлэг + SVG графикийн хос
+.media {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+  gap: rem(32);
+  align-items: start;
+  margin-top: rem(24);
+
+  @include respond(tablet) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  &__item {
+    margin: 0;
+  }
+
+  &__caption {
+    margin-top: rem(8);
+    color: var(--muted);
+    font-size: rem(14.4);
+  }
+
+  &__video {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    background: #000;
+    border-radius: var(--radius);
+  }
+}
+
+// Inline SVG график
+.chart {
+  &__svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+  }
+  &__label {
+    fill: var(--muted);
+    font-size: 10px;
+  }
+  &__axis {
+    stroke: var(--muted);
+    stroke-width: 1;
+    opacity: 0.6;
+  }
+  &__area {
+    fill: var(--accent);
+    opacity: 0.15;
+  }
+  &__line {
+    fill: none;
+    stroke: var(--accent);
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 1;                     // pathLength="1"
+    animation: draw 1.6s var(--ease) 0.3s backwards;
+  }
+}

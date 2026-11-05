@@ -1,0 +1,31 @@
+@use "../abstracts" as *;
+
+.theme-toggle {
+  @include flex-center(both, $inline: true);
+  width: rem(40);
+  height: rem(40);
+  padding: 0;
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: border-color var(--dur), transform var(--dur) var(--ease);
+
+  &:hover {
+    border-color: var(--ink);
+    transform: rotate(20deg);
+  }
+
+  // Идэвхтэй горимоос хамаарч нэг дүрс харагдана
+  &__icon--moon {
+    :root[data-theme="dark"] & {
+      display: none;
+    }
+  }
+  &__icon--sun {
+    :root:not([data-theme="dark"]) & {
+      display: none;
+    }
+  }
+}

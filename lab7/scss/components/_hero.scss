@@ -1,0 +1,46 @@
+@use "../abstracts" as *;
+
+.hero {
+  &__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    gap: rem(48);
+    align-items: center;
+    padding-block: rem(80) rem(64);
+
+    @include respond(tablet) {
+      grid-template-columns: minmax(0, 1fr);
+      gap: rem(32);
+      padding-block: rem(56) rem(48);
+    }
+    @include respond(mobile) {
+      padding-block: rem(40);
+      gap: rem(24);
+    }
+  }
+
+  // --i custom property-оор дараалуулсан (stagger) орох хөдөлгөөн
+  &__title {
+    @include stagger(120ms);
+    margin: 0 0 rem(16);
+    font-size: clamp(rem(35.2), 5vw, rem(60.8));
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+
+  &__lead {
+    @include stagger(120ms);
+    max-width: rem(576);
+    margin: 0 0 rem(28);
+    color: var(--deep-muted);
+    font-size: rem(17.6);
+
+    @include respond(mobile) {
+      font-size: rem(16);
+    }
+  }
+
+  &__cta {
+    @include stagger(120ms);
+  }
+}

@@ -1,0 +1,23 @@
+@use "sass:map";
+@use "../abstracts" as *;
+
+.button {
+  display: inline-block;
+  padding: rem(12.8) rem(24);
+  background: var(--pop);
+  color: contrast(map.get($colors, pop));   // --pop дэвсгэр дээр хамгийн тод текст
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: var(--radius);
+  transition: background-color var(--dur), transform var(--dur) var(--ease);
+
+  &:hover {
+    background: var(--pop-dark);
+    transform: translateY(-2px);
+  }
+
+  @include respond(mobile) {
+    display: block;
+    text-align: center;
+  }
+}

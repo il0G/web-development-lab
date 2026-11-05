@@ -1,0 +1,41 @@
+@use "sass:map";
+@use "../abstracts" as *;
+
+// @each-ээр үүсгэсэн utility классууд
+
+.u-visually-hidden {
+  @include visually-hidden;
+}
+
+// өнгө: .u-text-ink, .u-bg-surface ...
+@each $name, $value in $colors {
+  .u-text-#{$name} {
+    color: var(--#{$name});
+  }
+  .u-bg-#{$name} {
+    background-color: var(--#{$name});
+  }
+}
+
+// зай: .u-mt-1 ... .u-mb-5
+@each $key, $px in $spacers {
+  .u-mt-#{$key} {
+    margin-top: rem($px) !important;
+  }
+  .u-mb-#{$key} {
+    margin-bottom: rem($px) !important;
+  }
+}
+
+// breakpoint-оос доош нууx: .u-hide-tablet, .u-hide-nav, .u-hide-mobile
+@each $name, $width in $breakpoints {
+  .u-hide-#{$name} {
+    @include respond($name) {
+      display: none !important;
+    }
+  }
+}
+
+.u-text-center {
+  text-align: center;
+}

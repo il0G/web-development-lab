@@ -1,0 +1,8 @@
+@use "../abstracts" as *;
+
+.site-footer {
+  padding-block: rem(20);
+  background: var(--deep-darker);
+  color: var(--deep-muted);
+  font-size: rem(14.4);
+}

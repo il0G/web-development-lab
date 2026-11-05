@@ -1,0 +1,88 @@
+@use "../abstracts" as *;
+
+.main-nav {
+  margin-left: auto;
+
+  &__list {
+    display: flex;
+    gap: rem(28);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__link {
+    display: inline-block;
+    padding: rem(4) 0;
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    transition: border-color var(--dur);
+
+    &:hover {
+      border-bottom-color: var(--accent);
+    }
+  }
+
+  @include respond(tablet) {
+    &__list {
+      gap: rem(20);
+    }
+  }
+
+  // Нугарсан (dropdown) цэс
+  @include respond(nav) {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin-left: 0;
+    background: var(--surface);
+    border-bottom: 1px solid var(--line);
+
+    &--open {
+      display: block;
+    }
+
+    &__list {
+      flex-direction: column;
+      gap: 0;
+    }
+
+    &__item + &__item {
+      border-top: 1px solid var(--line);
+    }
+
+    &__link {
+      display: block;
+      padding: rem(14.4) rem(16);
+      border-bottom: 0;
+
+      &:hover {
+        background: var(--bg);
+      }
+    }
+  }
+}
+
+.menu-toggle {
+  display: none;
+
+  @include respond(nav) {
+    display: inline-block;
+    padding: rem(7.2) rem(14.4);
+    background: transparent;
+    color: var(--ink);
+    font: inherit;
+    font-weight: 600;
+    border: 1px solid var(--ink);
+    border-radius: var(--radius);
+    cursor: pointer;
+
+    &[aria-expanded="true"] {
+      background: var(--ink);
+      color: var(--surface);
+    }
+  }
+}

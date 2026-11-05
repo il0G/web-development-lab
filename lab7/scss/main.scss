@@ -1,0 +1,35 @@
+// =====================================================
+// Лаб 7: SCSS refactor. Лаб 6-ийн харагдацыг өөрчлөхгүй.
+// =====================================================
+
+// base
+@use "base/root";
+@use "base/animations";
+@use "base/reset";
+
+// layout
+@use "layout/container";
+@use "layout/header";
+
+// components
+@use "components/skip-link";
+@use "components/nav";
+@use "components/theme-toggle";
+@use "components/button";
+@use "components/band";
+@use "components/hero";
+@use "components/facts";
+@use "components/section";
+@use "components/card";
+@use "components/media";
+@use "components/map";
+@use "components/contact";
+
+// layout (footer)
+@use "layout/footer";
+
+// utilities
+@use "utilities/utilities";
+
+// хамгийн сүүлд: хөдөлгөөнийг хязгаарлах
+@use "base/reduced-motion";

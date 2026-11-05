@@ -1,0 +1,33 @@
+@use "../abstracts" as *;
+
+.section {
+  padding-block: rem(56);
+
+  & + & {
+    border-top: 1px solid var(--line);
+  }
+
+  &__title {
+    margin: 0;
+    padding-bottom: rem(9.6);
+    border-bottom: 2px solid var(--ink);
+    font-size: rem(25.6);
+    letter-spacing: -0.01em;
+
+    @include respond(mobile) {
+      font-size: rem(22.4);
+    }
+  }
+
+  &__lead {
+    margin: rem(16) 0 0;
+    color: var(--muted);
+  }
+
+  @include respond(tablet) {
+    padding-block: rem(48);
+  }
+  @include respond(mobile) {
+    padding-block: rem(40);
+  }
+}

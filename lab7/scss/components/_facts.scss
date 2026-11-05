@@ -1,0 +1,34 @@
+@use "../abstracts" as *;
+
+// Мэдээллийн талбарууд (dl)
+.facts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 0;
+  border-top: 2px solid var(--pop);
+  border-left: 1px solid var(--deep-line);
+
+  &__item {
+    padding: rem(16) rem(17.6);
+    border-right: 1px solid var(--deep-line);
+    border-bottom: 1px solid var(--deep-line);
+  }
+
+  &__label {
+    margin: 0 0 rem(4);
+    color: var(--deep-muted);
+    font-size: rem(13.6);
+  }
+
+  &__value {
+    margin: 0;
+    font-weight: 650;
+  }
+
+  @include respond(tablet) {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  @include respond(mobile) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

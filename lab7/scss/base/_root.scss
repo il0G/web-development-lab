@@ -1,0 +1,23 @@
+@use "../abstracts" as *;
+
+// Токенуудын map -> :root дээрх custom property
+:root {
+  color-scheme: light;
+  @include emit($colors);
+  @include emit($radii);
+  @include emit($shadows);
+  @include emit($durations);
+  @include emit($easings);
+}
+
+// Харанхуй горим: токенуудыг л солино
+:root[data-theme="dark"] {
+  @include dark-tokens;
+}
+
+// JS ажиллахаас өмнө (эсвэл JS-гүй үед) үйлдлийн системийн тохиргоог дагана
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    @include dark-tokens;
+  }
+}

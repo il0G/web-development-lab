@@ -1,0 +1,39 @@
+@use "sass:color";
+@use "sass:math";
+
+// rem($px): px -> rem (суурь 16px)
+//   rem(24) => 1.5rem
+@function rem($px, $base: 16) {
+  @return math.div($px, $base) * 1rem;
+}
+
+// --- contrast() -------------------------------------------------
+// WCAG харьцангуй гэрэлтэлт, харьцаа
+@function -channel($value) {
+  $c: math.div($value, 255);
+  @if $c <= 0.03928 {
+    @return math.div($c, 12.92);
+  }
+  @return math.pow(math.div($c + 0.055, 1.055), 2.4);
+}
+
+@function luminance($c) {
+  @return 0.2126 * -channel(color.channel($c, "red", $space: rgb))
+        + 0.7152 * -channel(color.channel($c, "green", $space: rgb))
+        + 0.0722 * -channel(color.channel($c, "blue", $space: rgb));
+}
+
+@function contrast-ratio($a, $b) {
+  $l1: luminance($a);
+  $l2: luminance($b);
+  @return math.div(math.max($l1, $l2) + 0.05, math.min($l1, $l2) + 0.05);
+}
+
+// contrast($bg): дэвсгэр дээр хамгийн тод уншигдах текстийн өнгийг сонгоно
+//   contrast(#f2994a) => бараан, contrast(#17304a) => цайвар
+@function contrast($bg, $light: #ffffff, $dark: #1b2530) {
+  @if contrast-ratio($bg, $dark) >= contrast-ratio($bg, $light) {
+    @return $dark;
+  }
+  @return $light;
+}

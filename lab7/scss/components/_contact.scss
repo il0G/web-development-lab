@@ -1,0 +1,37 @@
+@use "../abstracts" as *;
+
+.contact {
+  padding-block: rem(56);
+
+  @include respond(mobile) {
+    padding-block: rem(40);
+  }
+
+  &__title {
+    margin: 0 0 rem(8);
+    font-size: rem(25.6);
+    letter-spacing: -0.01em;
+
+    @include respond(mobile) {
+      font-size: rem(22.4);
+    }
+  }
+
+  &__text {
+    margin: 0;
+    color: var(--deep-muted);
+  }
+
+  &__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: rem(8) rem(24);
+    margin: rem(16) 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__link {
+    color: var(--pop);
+  }
+}

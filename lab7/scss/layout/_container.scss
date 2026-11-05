@@ -1,0 +1,13 @@
+@use "../abstracts" as *;
+
+.container {
+  width: min($container-max, 100% - rem(48));
+  margin-inline: auto;
+
+  @include respond(tablet) {
+    width: min($container-max, 100% - rem(40));
+  }
+  @include respond(mobile) {
+    width: min($container-max, 100% - rem(32));
+  }
+}
