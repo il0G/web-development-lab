@@ -47,20 +47,11 @@
   });
 
   // ---------- 3D flip карт ----------
-  document.querySelectorAll('.card').forEach(card => {
-    const btn = card.querySelector('.flip-btn');
-    const front = card.querySelector('.face-front');
-    const back = card.querySelector('.face-back');
-
-    function setFlipped(on) {
-      card.classList.toggle('is-flipped', on);
-      btn.setAttribute('aria-pressed', String(on));
-      front.inert = on;   // харагдахгүй тал дээр Tab/screen reader очихгүй
-      back.inert = !on;
-    }
-
-    btn.hidden = false;
-    setFlipped(false);
-    btn.addEventListener('click', () => setFlipped(!card.classList.contains('is-flipped')));
-  });
+  // Хулгана байгаа төхөөрөмж дээр flip-ийг CSS (:hover) бүрэн зохицуулна.
+  // Хулгана байхгүй (touch) үед карт дээр товшиход эргэнэ/буцна.
+  if (window.matchMedia('(hover: none)').matches) {
+    document.querySelectorAll('.card').forEach(card => {
+      card.addEventListener('click', () => card.classList.toggle('is-flipped'));
+    });
+  }
 })();
